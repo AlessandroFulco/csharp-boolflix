@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Build.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.SqlServer.Server;
 
 namespace csharp_boolflix.Data.Repositories
 {
@@ -29,8 +30,22 @@ namespace csharp_boolflix.Data.Repositories
             return db.Movies.Where(m => m.Id == id).Include("Actors").Include("Categories").FirstOrDefault();
         }
 
-        public void Create(Movie movie, List<Actor> actors, List<Category> categories)
+        public void Create(Movie movie, List<Actor> actors, List<Category> categories, List<int> areCheckedActors, List<int> areCheckedCategories)
         {
+
+            foreach (int id in areCheckedActors)
+            {
+                Actor actor = db.Actors.Where(a => a.Id == id).FirstOrDefault();
+                actors.Add(actor);
+            }
+
+
+            foreach (int id in areCheckedCategories)
+            {
+                Category category = db.Categories.Where(c => c.Id == id).FirstOrDefault();
+                categories.Add(category);
+            }
+
             movie.Actors = actors;
             movie.Categories = categories;
 

@@ -9,6 +9,10 @@ namespace csharp_boolflix.Data.Repositories
         {
             db = _db;
         }
+        public List<Actor> All()
+        {
+            return db.Actors.ToList();
+        }
         public Actor GetById(int id)
         {
             return db.Actors.Where(a => a.Id == id).FirstOrDefault();

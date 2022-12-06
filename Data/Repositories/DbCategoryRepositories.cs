@@ -9,6 +9,11 @@ namespace csharp_boolflix.Data.Repositories
         {
             db = _db;
         }
+
+        public List<Category> All()
+        {
+            return db.Categories.ToList();
+        }
         public Category GetById(int id)
         {
             return db.Categories.Where(c => c.Id == id).FirstOrDefault();

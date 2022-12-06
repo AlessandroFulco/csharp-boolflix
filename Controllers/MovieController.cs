@@ -11,6 +11,8 @@ namespace csharp_boolflix.Controllers
     public class MovieController : Controller
     {
         IDbMovieRepositories movieRepositories;
+        IDbActorRepositories actorRepositories;
+        IDbCategoryRepositories categoryRepositories;
         BoolflixDbContext db;
 
         public MovieController(IDbMovieRepositories _movieRepositories, BoolflixDbContext _db) : base()
@@ -34,8 +36,8 @@ namespace csharp_boolflix.Controllers
 
             MovieForm formData = new MovieForm();
             formData.Movie = new Movie();
-            formData.Actors = db.Actors.ToList();
-            formData.Categories = db.Categories.ToList();
+            formData.Actors = actorRepositories.All();
+            formData.Categories = categoryRepositories.All();
             formData.AreCheckedActors = new List<int>();
             formData.AreCheckedCategories = new List<int>();
 
@@ -46,22 +48,9 @@ namespace csharp_boolflix.Controllers
         public IActionResult Create(MovieForm formData)
         {
             List<Actor> actors = new List<Actor>();
-
-            foreach(int id in formData.AreCheckedActors)
-            {
-                Actor actor = db.Actors.Where(a => a.Id == id).FirstOrDefault();
-                actors.Add(actor);
-            }
-
             List<Category> categories = new List<Category>();
 
-            foreach (int id in formData.AreCheckedCategories)
-            {
-                Category category = db.Categories.Where(c => c.Id == id).FirstOrDefault();
-                categories.Add(category);
-            }
-
-            movieRepositories.Create(formData.Movie, actors, categories);
+            movieRepositories.Create(formData.Movie, actors, categories, formData.AreCheckedActors, formData.AreCheckedCategories);
 
             return RedirectToAction("Index");
         }
