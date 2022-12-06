@@ -63,10 +63,10 @@ else
                         @movie.Duration
                     </td>
                     <td class="detail">
-                        <a href="@Url.Action("Detail", "Pizza", new {id = movie.Id})" class="btn btn-primary rounded">Mostra</a>
-                        <a href="@Url.Action("Update", "Pizza", new {id = movie.Id})" class="btn btn-warning rounded">Modifica</a>
+                        <a href="@Url.Action("Details", "Movie", new {id = movie.Id})" class="btn btn-primary rounded">Mostra</a>
+                        <a href="@Url.Action("Update", "Movie", new {id = movie.Id})" class="btn btn-warning rounded">Modifica</a>
 
-                        <form asp-controller="Pizza" asp-action="Delete" asp-route-id="@movie.Id" method="post">
+                        <form asp-controller="Movie" asp-action="Delete" asp-route-id="@movie.Id" method="post">
                             <button class="btn btn-danger rounded">Elimina</button>
                         </form>
                     </td>

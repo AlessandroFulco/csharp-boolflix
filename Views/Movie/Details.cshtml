@@ -1,0 +1,42 @@
+﻿@model Movie
+
+<a class="btn btn-primary" href="@Url.Action("index", "Movie")">Torna alla lista dei film</a>
+
+<div class="d-flex justify-content-center">
+    <div class="card mb-3 " style="width: 800px;">
+        <div class="row g-0">
+            @*TODO: implemenare la copertina del film*@
+            @*<div class="col-md-4">
+                <img src="@Model.Photo" class="img-fluid rounded-start" alt="Pizza">
+            </div>*@
+            <div class="col">
+                <div class="card-body">
+                    <h5 class="card-title">@Model.Title</h5>
+                    <p class="card-text">@Model.Language</p>
+                    <p class="card-text">@Model.Director</p>
+                    <p class="card-text">@Model.Year</p>
+                    <p class="card-text">@Model.Duration</p>
+
+                    <div class="d-flex flex-wrap">
+                        <h5>Attori: </h5>
+                        <ul>
+                            @foreach (Actor actor in Model.Actors)
+                            {
+                                <li class="badge btn-info">@actor.FullName</li>
+                            }
+                        </ul>
+                    </div>
+                    <div class="d-flex flex-wrap">
+                        <h5>Categories: </h5>
+                        <ul>
+                            @foreach (Category category in Model.Categories)
+                            {
+                                <li class="badge btn-info">@category.Name</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -2,6 +2,7 @@
 using csharp_boolflix.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.EntityFrameworkCore;
 
 namespace csharp_boolflix.Data.Repositories
 {
@@ -20,7 +21,7 @@ namespace csharp_boolflix.Data.Repositories
         }
         public Movie GetById(int id)
         {
-            return db.Movies.Where(m => m.Id == id).FirstOrDefault();
+            return db.Movies.Where(m => m.Id == id).Include("Actors").Include("Categories").FirstOrDefault();
         }
 
         public void Create(Movie movie, List<Actor> actors, List<Category> categories)
