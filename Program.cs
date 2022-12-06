@@ -11,6 +11,8 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
                 .AddEntityFrameworkStores<BoolflixDbContext>();
 
 builder.Services.AddScoped<IDbMovieRepositories, DbMovieRepositories>();
+builder.Services.AddScoped<IDbActorRepositories, DbActorRepositories>();
+builder.Services.AddScoped<IDbCategoryRepositories, DbCategoryRepositories>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

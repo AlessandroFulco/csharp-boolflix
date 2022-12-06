@@ -6,7 +6,7 @@ namespace csharp_boolflix.Data.Repositories
     {
         List<Movie> All();
         Movie GetById(int id);
-
         void Create(Movie movie, List<Actor> actors, List<Category> categories);
+        void Update(Movie movie, Movie formData, List<int> areCheckedActors, List<int> areCheckedCategories);
     }
 }

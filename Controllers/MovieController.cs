@@ -45,9 +45,6 @@ namespace csharp_boolflix.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(MovieForm formData)
         {
-            //List<Actor> actors = db.Actors.ToList();
-            //List<Category> categories = db.Categories.ToList();
-
             List<Actor> actors = new List<Actor>();
 
             foreach(int id in formData.AreCheckedActors)
@@ -76,6 +73,8 @@ namespace csharp_boolflix.Controllers
             formData.AreCheckedCategories = new List<int>();
 
             Movie movie = movieRepositories.GetById(id);
+            if (movie == null)
+                return NotFound();
 
             formData.Movie = movie;
 
@@ -98,11 +97,16 @@ namespace csharp_boolflix.Controllers
 
             return View(formData);
         }
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public IActionResult Update(int id, MovieForm formData)
-        //{
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Update(int id, MovieForm formData)
+        {
 
-        //}
+            Movie movie = movieRepositories.GetById(id);
+
+            movieRepositories.Update(movie, formData.Movie, formData.AreCheckedActors, formData.AreCheckedCategories);
+
+            return RedirectToAction("Index");
+        }
     }
 }

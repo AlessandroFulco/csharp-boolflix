@@ -53,11 +53,11 @@
                     {
                         @if (Model.AreCheckedActors.Contains(item.Id))
                         {
-                            <input name="AreCheckedAttori" type="checkbox" value="@item.Id" checked />
+                            <input name="AreCheckedActors" type="checkbox" value="@item.Id" checked />
                         }
                         else
                         {
-                            <input name="AreCheckedAttori" type="checkbox" value="@item.Id" />
+                            <input name="AreCheckedActors" type="checkbox" value="@item.Id" />
                         }
                         <span>@item.FullName</span>
                         <br />
@@ -71,11 +71,11 @@
                     {
                         @if (Model.AreCheckedCategories.Contains(item.Id))
                         {
-                            <input name="AreCheckedAttori" type="checkbox" value="@item.Id" checked />
+                            <input name="AreCheckedCategories" type="checkbox" value="@item.Id" checked />
                         }
                         else
                         {
-                            <input name="AreCheckedAttori" type="checkbox" value="@item.Id" />
+                            <input name="AreCheckedCategories" type="checkbox" value="@item.Id" />
                         }
                         <span>@item.Name</span>
                         <br />
