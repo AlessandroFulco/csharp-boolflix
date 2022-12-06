@@ -1,12 +1,16 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using csharp_boolflix.Data;
+using csharp_boolflix.Data.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("BoolflixDbContext");
 builder.Services.AddDbContext<BoolflixDbContext>(options => options.UseSqlServer(connectionString));
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<BoolflixDbContext>();
+
+builder.Services.AddScoped<IDbMovieRepositories, DbMovieRepositories>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -19,7 +23,6 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 

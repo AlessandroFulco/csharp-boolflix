@@ -1,0 +1,94 @@
+﻿@using csharp_boolflix.Data.Form;
+@{
+    Layout = "_AdminLayout";
+}
+
+<h1>
+    Form Create Film
+</h1>
+
+@model MovieForm
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex align-items-center">
+                <h1 class="mt-3 mb-3">Aggiungi Film</h1>
+            </div>
+            <form asp-controller="Movie" asp-action="Create" method="post">
+                @Html.AntiForgeryToken()
+                @*Name*@
+                <div class="mb-3">
+                    <strong>Nome:</strong>
+                    <input asp-for="Movie.Title" class="d-block w-100" />
+                    <span asp-validation-for="Movie.Title" class="text-danger"></span>
+                </div>
+
+                @*Lingua*@
+                <div class="mb-3">
+                    <strong>Lingua:</strong>
+                    <input asp-for="Movie.Language" rows="10" class="d-block w-100"></input>
+                    <span asp-validation-for="Movie.Language" class="text-danger"></span>
+                </div>
+                @*Regista*@
+                <div class="mb-3">
+                    <strong>Regista:</strong>
+                    <input asp-for="Movie.Director" rows="10" class="d-block w-100"></input>
+                    <span asp-validation-for="Movie.Director" class="text-danger"></span>
+                </div>
+                @*Anno*@
+                <div class="mb-3">
+                    <strong>Anno:</strong>
+                    <textarea asp-for="Movie.Year" class="d-block w-100"></textarea>
+                    <span asp-validation-for="Movie.Year" class="text-danger"></span>
+                </div>
+                @*Durata*@
+                <div class="mb-3">
+                    <strong>Durata:</strong>
+                    <textarea asp-for="Movie.Duration" class="d-block w-100"></textarea>
+                    <span asp-validation-for="Movie.Year" class="text-danger"></span>
+                </div>
+                @*Selezione della categoria*@
+                <div class="mb-3">
+                    <strong>Attori:</strong>
+                    <br />
+                    @foreach (Actor item in Model.Actors)
+                    {
+                        @if (Model.AreCheckedActors.Contains(item.Id))
+                        {
+                            <input name="AreCheckedAttori" type="checkbox" value="@item.Id" checked />
+                        }
+                        else
+                        {
+                            <input name="AreCheckedAttori" type="checkbox" value="@item.Id" />
+                        }
+                        <span>@item.FullName</span>
+                        <br />
+                    }
+                </div>
+                @*Select ingredients*@
+                <div class="mb-3">
+                    <strong>Categorie:</strong>
+                    <br />
+                    @foreach (Category item in Model.Categories)
+                    {
+                        @if (Model.AreCheckedCategories.Contains(item.Id))
+                        {
+                            <input name="AreCheckedAttori" type="checkbox" value="@item.Id" checked />
+                        }
+                        else
+                        {
+                            <input name="AreCheckedAttori" type="checkbox" value="@item.Id" />
+                        }
+                        <span>@item.Name</span>
+                        <br />
+                    }
+                </div>
+                @*btn invio form*@
+                <div class="text-end">
+                    <input type="submit" class="btn btn-small btn-primary" value="Salva">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
