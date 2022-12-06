@@ -1,8 +1,10 @@
 ﻿namespace csharp_boolflix.Models
 {
-    public class Film : Content
+    public class Movie : Content
     {
-        public int Id { get; set; }
+        public Movie() { }
+
         public int Duration { get; set; }
+
     }
 }

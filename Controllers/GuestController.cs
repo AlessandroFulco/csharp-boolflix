@@ -4,25 +4,21 @@ using System.Diagnostics;
 
 namespace csharp_boolflix.Controllers
 {
-    public class HomeController : Controller
+    public class GuestController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<GuestController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public GuestController(ILogger<GuestController> logger)
         {
             _logger = logger;
         }
 
         public IActionResult Index()
         {
+            ViewData["title"] = "Home";
             return View();
         }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
+       
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

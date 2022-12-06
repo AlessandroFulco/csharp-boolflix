@@ -6,6 +6,8 @@
         public string Name { get; set; }
 
         //aggiungere la relazione con il content
-        public List<Content> Contents { get; set; }
+        public List<Content>? Contents { get; set; }
+
+        public Category() { }
     }
 }

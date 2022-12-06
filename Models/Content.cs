@@ -1,4 +1,5 @@
 ﻿using Microsoft.Identity.Client;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace csharp_boolflix.Models
 {
@@ -13,12 +14,15 @@ namespace csharp_boolflix.Models
 
 
         //relazione con actors
-        public List<Actor> Actors { get; set; }
+        public List<Actor>? Actors { get; set; }
 
         //aggiungere la relazione con la categoria
-        public List<Category> Categories { get; set; }
+        public List<Category>? Categories { get; set; }
 
-        //relazione con season
-        public List<Season> Seasons { get; set; }
+        
+
+        public Content() { }
+
+        
     }
 }

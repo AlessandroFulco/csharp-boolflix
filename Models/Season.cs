@@ -6,10 +6,12 @@
         public int Number { get; set; }
 
         //relazione con content
-        public List<Content> Contents { get; set; } 
+        public int TvShowId { get; set; }
+        public TvShow TvShow { get; set; }
 
         //relazione con episodi
-        public List<Episode> Episodes { get; set;}
+        public List<Episode> Episodes { get; set; }
 
+        public Season() { } 
     }
 }
