@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace csharp_boolflix.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class MovieController : Controller
     {
         IDbMovieRepositories movieRepositories;
@@ -68,24 +68,34 @@ namespace csharp_boolflix.Controllers
 
             return RedirectToAction("Index");
         }
+
         public IActionResult Update(int id)
         {
             MovieForm formData = new MovieForm();
-
-            formData.Movie = movieRepositories.GetById(id);
-            if(formData.Movie == null)
-                return NotFound();
-
-            formData.Categories = db.Categories.ToList();
+            formData.AreCheckedActors = new List<int>();
             formData.AreCheckedCategories = new List<int>();
-            formData.Actors = db.Actors.ToList();
-            foreach(Actor actor in formData.Actors)
+
+            Movie movie = movieRepositories.GetById(id);
+
+            formData.Movie = movie;
+
+            List<Actor> actors = db.Actors.ToList();
+            
+            foreach(Actor actor in movie.Actors)
             {
-                if(formData.Movie.Actors.Any(i => i.Id == id))
-                {
-                    formData.AreCheckedActors.Add(actor.Id);
-                }
+                formData.AreCheckedActors.Add(actor.Id);
             }
+            formData.Actors = actors;
+
+            List<Category> categories = db.Categories.ToList();
+            
+            foreach(Category category in movie.Categories)
+            {
+                formData.AreCheckedCategories.Add(category.Id);
+            }
+            formData.Categories = categories;
+
+
             return View(formData);
         }
         //[HttpPost]

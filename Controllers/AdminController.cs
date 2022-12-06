@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace csharp_boolflix.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class AdminController : Controller
     {
         public IActionResult Index()
