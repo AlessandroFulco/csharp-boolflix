@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using csharp_boolflix.Data;
-using csharp_boolflix.Data.Repositories;
+using csharp_boolflix.Data.Repositories.Film;
+using csharp_boolflix.Data.Repositories.MyInterface;
+using csharp_boolflix.Data.Repositories.Serie;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
                 .AddEntityFrameworkStores<BoolflixDbContext>();
 
 builder.Services.AddScoped<IDbMovieRepositories, DbMovieRepositories>();
+builder.Services.AddScoped<IDbTvShowRepositories, DbTvShowRepositories>();
 builder.Services.AddScoped<IDbActorRepositories, DbActorRepositories>();
 builder.Services.AddScoped<IDbCategoryRepositories, DbCategoryRepositories>();
 

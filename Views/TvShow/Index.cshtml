@@ -1,0 +1,74 @@
+﻿@{
+    Layout = "_AdminLayout";
+}
+
+@model List<TvShow>
+
+@if (Model.Count() == 0)
+{
+    <h2>Non sono ci sono Serie</h2>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Titolo
+                </th>
+                <th>
+                    Lingua
+                </th>
+                <th>
+                    Regista
+                </th>
+                <th>
+                    Anno
+                </th>
+                <th>
+                    Stagioni
+                </th>
+                <th>
+                    #
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (TvShow tvShow in Model)
+            {
+                <tr>
+                    @*<td><a href="@Url.Action("Detail",new {id = pizza.Id})">@pizza.Id</a></td>*@
+                    <td>
+                        @tvShow.Id
+                    </td>
+                    <td class="Title">
+                        @tvShow.Title
+                    </td>
+                    <td class="Language">
+                        @tvShow.Language
+                    </td>
+                    <td class="Director">
+                        @tvShow.Director
+                    </td>
+                    <td class="Year">
+                        @tvShow.Year
+                    </td>
+                    <td class="Season">
+                        @tvShow.Seasons.Count
+                    </td>
+                    <td class="detail">
+                        <a href="@Url.Action("Details", "TvShow", new {id = tvShow.Id})" class="btn btn-primary rounded">Mostra</a>
+                        <a href="@Url.Action("Update", "TvShow", new {id = tvShow.Id})" class="btn btn-warning rounded">Modifica</a>
+
+                        <form asp-controller="Movie" asp-action="Delete" asp-route-id="@tvShow.Id" method="post">
+                            <button class="btn btn-danger rounded">Elimina</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

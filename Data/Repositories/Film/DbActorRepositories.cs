@@ -1,6 +1,7 @@
-﻿using csharp_boolflix.Models;
+﻿using csharp_boolflix.Data.Repositories.MyInterface;
+using csharp_boolflix.Models;
 
-namespace csharp_boolflix.Data.Repositories
+namespace csharp_boolflix.Data.Repositories.Film
 {
     public class DbActorRepositories : IDbActorRepositories
     {

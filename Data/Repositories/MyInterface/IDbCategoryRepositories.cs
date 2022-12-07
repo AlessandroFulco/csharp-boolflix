@@ -1,6 +1,6 @@
 ﻿using csharp_boolflix.Models;
 
-namespace csharp_boolflix.Data.Repositories
+namespace csharp_boolflix.Data.Repositories.MyInterface
 {
     public interface IDbCategoryRepositories
     {

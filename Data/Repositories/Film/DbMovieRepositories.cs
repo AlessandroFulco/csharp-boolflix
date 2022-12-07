@@ -1,4 +1,5 @@
 ﻿using csharp_boolflix.Data.Form;
+using csharp_boolflix.Data.Repositories.MyInterface;
 using csharp_boolflix.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -6,7 +7,7 @@ using Microsoft.Build.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.SqlServer.Server;
 
-namespace csharp_boolflix.Data.Repositories
+namespace csharp_boolflix.Data.Repositories.Film
 {
     public class DbMovieRepositories : IDbMovieRepositories
     {
@@ -55,12 +56,12 @@ namespace csharp_boolflix.Data.Repositories
 
         public void Update(Movie movie, Movie formData, List<int> areCheckedActors, List<int> areCheckedCategories)
         {
-            if(areCheckedActors == null)
+            if (areCheckedActors == null)
             {
                 areCheckedActors = new List<int>();
             }
 
-            if(areCheckedCategories == null)
+            if (areCheckedCategories == null)
             {
                 areCheckedCategories = new List<int>();
             }
@@ -72,7 +73,7 @@ namespace csharp_boolflix.Data.Repositories
             movie.Duration = formData.Duration;
 
             movie.Actors.Clear();
-            foreach(int idActor in areCheckedActors)
+            foreach (int idActor in areCheckedActors)
             {
                 Actor actor = actorRepositories.GetById(idActor);
                 movie.Actors.Add(actor);
